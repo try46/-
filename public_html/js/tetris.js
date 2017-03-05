@@ -76,60 +76,61 @@ function tick() {
     }
 }
 
-function valid(offsetX,offsetY,newCurrent){
-offsetX=offsetX||0;
-offsetY=offsetY||0;
-offsetX=currentX+offsetX;
-offsetY=currentY+offsetY;
-newCurrent=newCurrent||current;
-for(var y=0;y<4;++y){
-    for(var x=0;x<4;++x){
-        if(newCurrent[y][x]){
-            if(typeof board[y+offsetY]==='undefiled'
-           ||typeof board[y+offsetY][x+offsetX]==='undefiled'
-           ||board[y+offsetY][x+offsetX]
-           ||x+offsetX<0
-           ||y+offsetY>=ROWS
-           ||x+offsetX>=COLS
-           ){
-       if(offsetY==1&&offsetX-currentX==0&&offsetY-currentY==1){
-           console.log('game over');
-           lose=true;
-       }
-           }
-           return false;
+function valid(offsetX, offsetY, newCurrent) {
+    offsetX = offsetX || 0;
+    offsetY = offsetY || 0;
+    offsetX = currentX + offsetX;
+    offsetY = currentY + offsetY;
+    newCurrent = newCurrent || current;
+    for (var y = 0; y < 4; ++y) {
+        for (var x = 0; x < 4; ++x) {
+            if (newCurrent[y][x]) {
+                if (typeof board[y + offsetY] === 'undefiled'
+                        || typeof board[y + offsetY][x + offsetX] === 'undefiled'
+                        || board[y + offsetY][x + offsetX]
+                        || x + offsetX < 0
+                        || y + offsetY >= ROWS
+                        || x + offsetX >= COLS
+                        ) {
+                    if (offsetY == 1 && offsetX - currentX == 0 && offsetY - currentY == 1) {
+                        console.log('game over');
+                        lose = true;
+                    }
+                }
+                return false;
+            }
         }
     }
-}
-return true;
+    return true;
 }
 
-function freeze(){
-    for(var y=0;y<4;++y){
-        for(var x=0;x<4;++y){
-            if(current[y][x]){
-                board[y+currentY][x+currentX]=current[y][x];
+function freeze() {
+    for (var y = 0; y < 4; ++y) {
+        for (var x = 0; x < 4; ++y) {
+            if (current[y][x]) {
+                board[y + currentY][x + currentX] = current[y][x];
             }
         }
     }
 }
 
-function clearLines(){
-    for(var y=ROWS-1;y>=0;){
-        var rowFilled=true;
-        for(var x=0;x<COLS;++x){
-        if(board[y][x]===0){
-            rowFilled=false;
-            break;
+function clearLines() {
+    for (var y = ROWS - 1; y >= 0; ) {
+        var rowFilled = true;
+        for (var x = 0; x < COLS; ++x) {
+            if (board[y][x] === 0) {
+                rowFilled = false;
+                break;
+            }
+        }
+        if (rowFilled) {
+            document.getElementById('clearsound').play();
+            for (var yy = y; yy > 0; --yy) {
+                for (var x = 0; x < COLS; ++x) {
+                    board[yy][x] = board[yy - 1][x];
+                }
+            }
+            ++y;
         }
     }
-    if(rowFilled){
-        document.getElementById('clearsound').play();
-        for(var yy=y;yy>0;--yy){
-            for(var x=0;x<COLS;++x){
-                board[yy][x]=board[yy-1][x];
-            }
-    }
-}
-}
 }
