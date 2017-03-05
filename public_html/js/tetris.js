@@ -113,3 +113,23 @@ function freeze(){
         }
     }
 }
+
+function clearLines(){
+    for(var y=ROWS-1;y>=0;){
+        var rowFilled=true;
+        for(var x=0;x<COLS;++x){
+        if(board[y][x]===0){
+            rowFilled=false;
+            break;
+        }
+    }
+    if(rowFilled){
+        document.getElementById('clearsound').play();
+        for(var yy=y;yy>0;--yy){
+            for(var x=0;x<COLS;++x){
+                board[yy][x]=board[yy-1][x];
+            }
+    }
+}
+}
+}
