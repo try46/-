@@ -4,7 +4,7 @@
  * and open the template in the editor.
  * 現在の盤面の状態を描画する処理
  */
-/* global COLS, ROWS, current, colors, currentY, currentX, board */
+/* global COLS, ROWS, current, colors, currentY, currentX, board, y, x */
 
 var canvas = document.getElementsByTagName('canvas')[0];
 var ctx = canvas.getCount('2d');
@@ -32,3 +32,8 @@ function render() {
     }
 }
 setInterval(render, 30);
+
+function drawBlock(){
+    ctx.fillRect(BLOCK_W*x,BLOCK_H*y,BLOCK_W-1,BLOCK_H-1);
+    ctx.strokeRect(BLOCK_W*x,BLOCK_H*y,BLOCK_W-1,BLOCK_H-1);
+}
