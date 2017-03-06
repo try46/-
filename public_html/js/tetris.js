@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/* global rotated */
+
 var COLS = 10, ROWS = 20;
 var board = [];
 var lose;
@@ -92,7 +94,7 @@ function valid(offsetX, offsetY, newCurrent) {
                         || y + offsetY >= ROWS
                         || x + offsetX >= COLS
                         ) {
-                    if (offsetY == 1 && offsetX - currentX == 0 && offsetY - currentY == 1) {
+                    if (offsetY === 1 && offsetX - currentX === 0 && offsetY - currentY === 1) {
                         console.log('game over');
                         lose = true;
                     }
@@ -132,5 +134,30 @@ function clearLines() {
             }
             ++y;
         }
+    }
+}
+function keyPress(key) {
+    switch (key) {
+        case 'left':
+            if (valid(-1)) {
+                --currentX; //左に1ずらす
+            }
+            break;
+        case 'right':
+            if (valid(1)) {
+                ++currentX;//右に1ずらす
+            }
+            break;
+        case 'down':
+            if(valid(0,1)){
+                ++currentY;
+            }
+            break;
+        case 'rotate':
+            var roteto=rotate(current);
+            if(varlid(0,0,rotated)){
+                current=rotated;
+            }
+            break;
     }
 }
