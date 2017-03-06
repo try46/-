@@ -149,15 +149,26 @@ function keyPress(key) {
             }
             break;
         case 'down':
-            if(valid(0,1)){
+            if (valid(0, 1)) {
                 ++currentY;
             }
             break;
         case 'rotate':
-            var roteto=rotate(current);
-            if(varlid(0,0,rotated)){
-                current=rotated;
+            var roteto = rotate(current);
+            if (varlid(0, 0, rotated)) {
+                current = rotated;
             }
             break;
     }
+}
+
+function rotate(current) {
+    var newCurrent = [];
+    for (var y = 0; y < 4; ++y) {
+        newCurrent[ y ] = [];
+        for (var x = 0; x < 4; ++x) {
+            newCurrent[ y ][ x ] = current[ 3 - x ][ y ];
+        }
+    }
+    return newCurrent;
 }
