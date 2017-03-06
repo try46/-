@@ -161,3 +161,14 @@ function keyPress(key) {
             break;
     }
 }
+
+function rotate(current){
+    var newCurrent=[];
+    for(var y=0;y<4;++y){
+        newCurrent[y]=[];
+        for(var x=0;x<4;++x){
+            newCurrent[y][x]=current[3-x][y];
+        }
+    }
+    return newCurrent;
+}
